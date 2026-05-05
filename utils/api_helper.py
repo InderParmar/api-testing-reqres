@@ -1,5 +1,8 @@
 import requests, os
 from config.api_config import BASE_URL
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class APIHelper:
     """
@@ -12,7 +15,8 @@ class APIHelper:
         self.base_url = BASE_URL
         self.session = requests.Session()    
         api_key = os.environ.get("REQRES_API_KEY")
-        # Set default headers that apply to every request
+        if not api_key:
+            print("WARNING: REQRES_API_KEY not found in environment!")        # Set default headers that apply to every request
         self.session.headers.update({
             "Content-Type": "application/json",
             "Accept": "application/json",
