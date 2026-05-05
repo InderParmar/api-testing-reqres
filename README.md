@@ -93,15 +93,30 @@ git clone https://github.com/InderParmar/api-testing-reqres.git
 cd api-testing-reqres
 
 pip install -r requirements.txt
-
-export REQRES_API_KEY=your_key_here
-
-pytest tests/ -v
-
-pytest tests/ --html=report.html --self-contained-html -v
 ```
 
----
+Create a `.env` file in the project root:
+
+REQRES_API_KEY=your_key_here
+
+The `.env` file is loaded automatically via `python-dotenv` — no manual export needed.
+It is listed in `.gitignore` and never committed.
+
+```bash
+# Run all tests
+pytest tests/ -v
+
+# Run with HTML report
+pytest tests/ --html=report.html --self-contained-html -v
+
+# Run a specific file
+pytest tests/test_auth.py -v
+
+# Run with fixture setup visibility
+pytest tests/ -v --setup-show
+```
+
+> **CI note:** In GitHub Actions the key is injected via repository secrets — no `.env` file needed in CI.---
 
 ## Key Design Decisions
 

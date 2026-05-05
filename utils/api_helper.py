@@ -17,12 +17,17 @@ class APIHelper:
         api_key = os.environ.get("REQRES_API_KEY")
         if not api_key:
             print("WARNING: REQRES_API_KEY not found in environment!")        # Set default headers that apply to every request
-        self.session.headers.update({
+        
+        default_headers = {
             "Content-Type": "application/json",
-            "Accept": "application/json",
-            "x-api-key": api_key
-            })
-    
+            "Accept": "application/json"
+        }
+        
+        if api_key:
+            default_headers["x-api-key"] = api_key
+            
+        self.session.headers.update(default_headers)
+         
     def get(self, endpoint, params=None, headers=None):
         """
         Send a GET request.
