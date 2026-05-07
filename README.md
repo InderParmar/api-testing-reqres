@@ -172,7 +172,7 @@ To use: import `Reqres_API_Tests.postman_collection.json` into Postman, select `
 
 ## Test Results
 
-### Python pytest — All Tests Passing
+### Python pytest — All Tests Passing Demo
 
 ![Test Results Detail](screenshots/test_results_detail.png)
 
